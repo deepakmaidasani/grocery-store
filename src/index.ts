@@ -23,5 +23,5 @@ app.get('/test',(req:Request,resp:Response):void=>{
 sqlconnections();
 
 app.listen(PORT,():void=>{
-    console.log(`server is aleady running on ${PORT}`);
+    console.log(`server is running on ${PORT}`);
 })

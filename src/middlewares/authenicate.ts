@@ -23,7 +23,6 @@ function authenticateToken(req:Request, res:Response, next:Next) {
 	jwt.verify(token, process.env.USER_ACCESS_KEY, (err:Error, user:User) => {
 		// verify the token
 		if (err) {
-			console.log(err);
 			isSuccess = false;
 			message = "Cannot verify the token or the token has expired!";
 			status = 403;

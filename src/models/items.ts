@@ -15,19 +15,3 @@ export class GroceryItem {
     @Column()
     quantity: number
 }
-
-/*const getList = ()=> {
-    return new Promise(async (resolve, reject)=>{
-        try{
-            let data = await entityManager.query("select * from city");
-            resolve(data);
-        }
-        catch(err){
-            reject(err);
-        }
-    })
-}
-
-export default {
-    getList
-}*/
