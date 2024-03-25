@@ -5,7 +5,7 @@ import sqlconnections from "./configs/db.sql"
 require("dotenv/config");
 
 const app = express();
-const PORT = 4011;
+const PORT = process.env.port;
 
 
 app.use(express.json());
