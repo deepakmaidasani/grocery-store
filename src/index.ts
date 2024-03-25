@@ -1,6 +1,6 @@
-import express,{Request,Response} from "express";
-import {itemRouter} from "./routes/itemRoutes";
-import {userRouter} from "./routes/userRoutes";
+import express, { Request, Response } from "express";
+import { itemRouter } from "./routes/itemRoutes";
+import { userRouter } from "./routes/userRoutes";
 import sqlconnections from "./configs/db.sql"
 require("dotenv/config");
 
@@ -9,19 +9,19 @@ const PORT = process.env.port;
 
 
 app.use(express.json());
-app.use(express.urlencoded({extended:true}));
+app.use(express.urlencoded({ extended: true }));
 
-app.use('/',itemRouter);
-app.use('/',userRouter);
+app.use('/', itemRouter);
+app.use('/', userRouter);
 
 
-app.get('/test',(req:Request,resp:Response):void=>{
-    resp.json({data:"test page 1011"})
+app.get('/test', (req: Request, resp: Response): void => {
+    resp.json({ data: "test page 1011" })
 })
 
 //connects();
 sqlconnections();
 
-app.listen(PORT,():void=>{
+app.listen(PORT, (): void => {
     console.log(`server is running on ${PORT}`);
 })

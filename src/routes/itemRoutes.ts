@@ -1,26 +1,20 @@
-import express, {Request,Response} from "express";
+import express, { Request, Response } from "express";
 const router = express.Router();
-import { createItem, getItemById, getItemByName,updateItem,deleteItem, getItems } from "../controllers/groceryItem";
+import { createItem, getItemById, getItemByName, updateItem, deleteItem, getItems } from "../controllers/groceryItem";
 import { authenticateToken } from "../middlewares/authenicate";
 
-/*import { homedetail } from "../controllers/users";
-import CityCntrl from "../controllers/mysqlusers";
+router.post('/api/insertitem', authenticateToken, createItem)
 
-router.get('/home',homedetail)
-router.get('/city',CityCntrl.getList)*/
+router.get('/api/getitem', authenticateToken, getItemByName)
 
-router.post('/api/insertitem',authenticateToken,createItem)
+router.get('/api/getItem/:id', authenticateToken, getItemById)
 
-router.get('/api/getitem', authenticateToken,getItemByName)
+router.patch('/api/updateitem/:id', authenticateToken, updateItem)
 
-router.get('/api/getItem/:id',authenticateToken,getItemById)
+router.delete('/api/deleteitem/:id', authenticateToken, deleteItem)
 
-router.patch('/api/updateitem/:id',authenticateToken,updateItem)
+router.get('/api/viewitems', authenticateToken, getItems)
 
-router.delete('/api/deleteitem/:id',authenticateToken,deleteItem)
-
-router.get('/api/viewitems',authenticateToken, getItems)
-
-export{
+export {
     router as itemRouter
 }

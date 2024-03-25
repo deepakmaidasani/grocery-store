@@ -3,10 +3,10 @@ import { User } from "../models/groceryusers";
 import bcrypt from "bcrypt";
 import { entityManager } from "../configs/db.sql";
 import { AppDataSource } from "../configs/db.sql";
-import jwt, { Secret } from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 
 export async function addUser(req: Request, res: Response) {
-    let isSuccess:boolean, status:number;
+    let isSuccess: boolean, status: number;
     let userdata = req.body;
     userdata.password = bcrypt.hashSync(userdata.password, 10);
     let query: string = `INSERT INTO user (username, email, password, is_admin) VALUES (?, ?, ?, ?)`;
@@ -36,7 +36,7 @@ export async function addUser(req: Request, res: Response) {
         status = 500;
         res.status(status).json({
             isSuccess: isSuccess,
-                status: status,
+            status: status,
             message: "Error adding user, please try again later",
         })
     }
