@@ -14,11 +14,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/', itemRouter);
 app.use('/', userRouter);
 
-
-app.get('/test', (req: Request, resp: Response): void => {
-    resp.json({ data: "test page 1011" })
-})
-
 //connects();
 sqlconnections();
 

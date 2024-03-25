@@ -35,10 +35,10 @@ export async function makeOrder(req: Request, res: Response) {
             bookOrderItems[i].order_id = orderid.order_id;
 
 
-            let itemdetails = await itemRepository.findOneBy({ id: orderitem.item_id })
+            let itemdetails = await itemRepository.findOneBy({ id: orderitem.item_id });
             let itemprice = itemdetails?.price;
             let itemqty = itemdetails?.quantity;
-            if (itemqty && itemqty < orderitem.quantity) {
+            if (itemqty == 0 || (itemqty && itemqty < orderitem.quantity)) {
                 OOSflag = true;
                 break;
             }
@@ -51,8 +51,7 @@ export async function makeOrder(req: Request, res: Response) {
             }
         };
         if (OOSflag) {
-            const query = `DELETE FROM ORDER WHERE ORDER_ID = ?`;
-            await entityManager.query(query, [orderid]);
+            await orderRepository.delete(orderid.order_id);
             isSuccess = false;
             status = 404;
             res.status(status).json({

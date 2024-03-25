@@ -11,7 +11,7 @@ export async function addUser(req: Request, res: Response) {
     userdata.password = bcrypt.hashSync(userdata.password, 10);
     let query: string = `INSERT INTO user (username, email, password, is_admin) VALUES (?, ?, ?, ?)`;
     try {
-        let data = await entityManager.query(query, [userdata.username, userdata.email, userdata.password, userdata.is_admin]);
+        let data = await entityManager.query(query, [userdata.username, userdata.email, userdata.password, userdata.isAdmin]);
         if (data.affectedRows) {
             isSuccess = true;
             status = 201;

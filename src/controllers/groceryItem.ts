@@ -4,10 +4,10 @@ import { entityManager } from "../configs/db.sql";
 export async function createItem(req: Request, res: Response) {
     let isSuccess: boolean, status: number;
     try {
-        let userdata = req.body.userdata;
-        delete req.body.userdata;
+        let userdata = req.body.user;
+        delete req.body.user;
 
-        if (!userdata.is_admin) {
+        if (!userdata.isAdmin) {
             isSuccess = false;
             status = 401;
             return res.status(status).json({
@@ -113,10 +113,10 @@ export async function getItemById(req: Request, res: Response) {
 
 export async function updateItem(req: Request, res: Response) {
     let isSuccess: boolean, status: number;
-    let userdata = req.body.userdata;
-    delete req.body.userdata;
+    let userdata = req.body.user;
+    delete req.body.user;
 
-    if (!userdata.is_admin) {
+    if (!userdata.isAdmin) {
         isSuccess = false;
         status = 401;
         return res.status(status).json({
@@ -162,10 +162,10 @@ export async function updateItem(req: Request, res: Response) {
 
 export async function deleteItem(req: Request, res: Response) {
     let isSuccess: boolean, status: number;
-    let userdata = req.body.userdata;
-    delete req.body.userdata;
+    let userdata = req.body.user;
+    delete req.body.user;
 
-    if (!userdata.is_admin) {
+    if (!userdata.isAdmin) {
         isSuccess = false;
         status = 401;
         return res.status(status).json({
